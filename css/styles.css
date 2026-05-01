@@ -1203,6 +1203,78 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     text-align: left;
 }
 
+/* ==========  SUVENĪRI (drīzumā)  ========== */
+.souvenir-teaser {
+    padding-top: clamp(40px, 7vw, 56px);
+    padding-bottom: clamp(48px, 8vw, 72px);
+    background: linear-gradient(
+        158deg,
+        var(--color-beige-light) 0%,
+        var(--color-bg) 52%,
+        var(--color-bg-alt) 100%
+    );
+}
+.souvenir-teaser-plank {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 2.85rem) clamp(1.4rem, 4vw, 2.75rem);
+    background: var(--color-card);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--color-beige);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+.souvenir-teaser-plank::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        -7deg,
+        transparent 0 18px,
+        rgba(61, 51, 46, 0.028) 18px 19px,
+        transparent 19px 36px
+    );
+    pointer-events: none;
+}
+.souvenir-teaser-head {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+.souvenir-teaser-head .section-title {
+    margin-bottom: 1rem;
+}
+.souvenir-teaser-head .section-lead.souvenir-teaser-lead {
+    margin-bottom: 1.35rem;
+}
+.souvenir-teaser-badge {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 10px 24px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    color: var(--color-brown);
+    background: var(--color-mint);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 8px 22px rgba(79, 179, 158, 0.32);
+}
+.souvenir-teaser-hint {
+    font-size: 0.93rem;
+    color: var(--color-brown-soft);
+    max-width: 44ch;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+}
+.souvenir-teaser-cta {
+    justify-content: center;
+}
+
 /* ==========  CONTACT  ========== */
 .contact {
     background: var(--color-bg);
