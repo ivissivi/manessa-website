@@ -1431,6 +1431,173 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 
 @media (max-width: 768px) {
+    /* Mobilajā centrē tekstu visa galvenā satura blokos */
+    body {
+        text-align: center;
+    }
+
+    /* Galvenās navigācijas joslas logo paliek pa kreisi nelielai orientācijai */
+    .header .nav-container {
+        text-align: left;
+    }
+
+    .eyebrow {
+        padding-left: 0;
+        padding-top: 18px;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .eyebrow::before {
+        left: 50%;
+        top: 0;
+        bottom: auto;
+        transform: translateX(-50%);
+    }
+    .section-header.center .eyebrow {
+        padding-left: 0;
+    }
+    .section-header.center .eyebrow::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .section-header:not(.center) {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .section-lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-content {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+    .about-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .about-features li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .about-features li:hover {
+        transform: none;
+    }
+    .about-features li div:last-child {
+        text-align: center;
+    }
+
+    .services .section-header {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .service-card {
+        text-align: center;
+    }
+    .service-num {
+        position: static;
+        margin: 0 auto 0.85rem;
+    }
+    .service-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .process-step {
+        text-align: center;
+    }
+
+    .project-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .project-tag {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .project-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .project-meta {
+        align-self: center;
+    }
+
+    .team .section-header {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .testimonial-name,
+    .testimonial-role {
+        text-align: center;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+    .contact-list li {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-list li .contact-label {
+        text-align: center;
+    }
+
+    .contact-form {
+        text-align: center;
+    }
+    .contact-form h3 {
+        text-align: center;
+    }
+    .form-group label {
+        text-align: center;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        text-align: center;
+    }
+    .form-note {
+        text-align: center;
+    }
+
+    .footer-brand {
+        text-align: center;
+    }
+    .footer-brand .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-brand p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-col {
+        text-align: center;
+    }
+
     .nav-toggle { display: flex; }
 
     .nav {
