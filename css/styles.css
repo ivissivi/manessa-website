@@ -27,6 +27,9 @@
     /* Typography */
     --font-display: 'Cormorant Garamond', 'Georgia', serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* iOS/macOS Safari → SF Pro; Windows → Segoe UI; Android → Roboto */
+    --font-numeric: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+        system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 
     /* Spacing */
     --container: 1240px;
@@ -465,7 +468,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 .hero-stat-num {
-    font-family: var(--font-display);
+    font-family: var(--font-numeric);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum", "tnum";
     font-size: 2.4rem;
     color: var(--color-mint);
     line-height: 1;
@@ -581,7 +586,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 .about-badge-num {
     display: block;
-    font-family: var(--font-display);
+    font-family: var(--font-numeric);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum", "tnum";
     font-size: 2rem;
     font-weight: 600;
     line-height: 1;
@@ -709,7 +716,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     position: absolute;
     top: 1.4rem;
     right: 1.6rem;
-    font-family: var(--font-display);
+    font-family: var(--font-numeric);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum", "tnum";
     font-size: 1.1rem;
     color: var(--color-beige);
     font-weight: 600;
@@ -789,7 +798,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     background: var(--color-bg);
     border: 2px solid var(--color-mint);
     color: var(--color-brown);
-    font-family: var(--font-display);
+    font-family: var(--font-numeric);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum", "tnum";
     font-size: 1.5rem;
     font-weight: 600;
     display: flex;
@@ -837,9 +848,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.8rem;
-    max-width: 1080px;
+    max-width: 1160px;
     margin: 0 auto;
 }
 
@@ -950,21 +961,8 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     text-decoration: none;
 }
 
-@media (max-width: 1024px) {
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .team-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 480px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
-
 @media (max-width: 640px) {
     .team-grid { grid-template-columns: 1fr; }
-    .team-card:last-child { max-width: none; }
 }
 
 /* ==========  STATS  ========== */
@@ -991,7 +989,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 .stat-item:last-child { border-right: none; }
 
 .stat-num {
-    font-family: var(--font-display);
+    font-family: var(--font-numeric);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum", "tnum";
     font-size: clamp(2.4rem, 4.5vw, 3.6rem);
     color: var(--color-mint);
     font-weight: 500;
