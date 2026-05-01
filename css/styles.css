@@ -373,6 +373,7 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 /* ==========  HERO  ========== */
 .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     position: relative;
     display: flex;
     align-items: center;
@@ -1633,7 +1634,8 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 
     .hero {
         padding: 100px 0 60px;
-        min-height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
     .hero-stats {
         grid-template-columns: repeat(3, 1fr);
