@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manessa — Meža apsaimniekošana Latvijā</title>
+    <meta name="description" content="SIA Manessa — profesionāla meža apsaimniekošana, mežizstrāde, cirsmu iegāde un kokmateriālu sagatavošana Siguldā un visā Latvijā." />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">
+            <img src="assets/logo.png" alt="Manessa" />
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo.png" alt="Manessa logo" />
+            </a>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">Par mums</a></li>
+                    <li><a href="#services" class="nav-link">Pakalpojumi</a></li>
+                    <li><a href="#process" class="nav-link">Process</a></li>
+                    <li><a href="#team" class="nav-link">Komanda</a></li>
+                    <li><a href="#projects" class="nav-link">Projekti</a></li>
+                    <li><a href="#contact" class="nav-link">Kontakti</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-primary nav-cta">Pieteikt cirsmu</a>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Atvērt izvēlni">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="eyebrow reveal">Meža apsaimniekošana · Sigulda</span>
+                <h1 class="hero-title reveal">
+                    Pārdod <span class="accent">mežu vai cirsmu</span>?
+                </h1>
+                <p class="hero-text reveal">
+                    Manessa nodrošina pilnus mežsaimniecības pakalpojumus -
+                    no cirsmas izvērtēšanas līdz tās iepirkšanai un atjaunošanai.
+                    Darbojamies Vidzemē un Latgalē.
+                </p>
+                <div class="hero-actions reveal">
+                    <a href="#services" class="btn btn-primary">
+                        Mūsu pakalpojumi
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost">Saņemt piedāvājumu</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Ritināt</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images reveal">
+                    <div class="about-img about-img-1">
+                        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80" alt="Latvijas mežs rīta miglā" loading="lazy" />
+                    </div>
+                    <div class="about-img about-img-2">
+                        <img src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=600&q=80" alt="Ozolu birzs" loading="lazy" />
+                    </div>
+                    <div class="about-badge">
+                        <span class="aabout-badge-text">Dibināts</span>
+                        <span class="about-badge-num">2026</span>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <span class="eyebrow reveal">Par Manessa</span>
+                    <h2 class="section-title reveal">
+                        Vidzemes mežu kopēji ar <span class="accent">praktisku pieeju</span>.
+                    </h2>
+                    <p class="section-lead reveal">
+                        Siguldā bāzēts mežsaimniecības uzņēmums.
+                        Mūsu komandas mērķis - nodrošināt ilgtspējīgus Latvijas mežus.
+                    </p>
+                    <p class="reveal">
+                        Aktīva sadarbība ar mežu īpašniekiem, dabu un likumu. Katra cirsma sākas ar rūpīgu
+                        izpēti un beidzas ar meža atjaunošanu, nevis tikai ar pēdējo baļķi pievedumā.
+                    </p>
+
+                    <ul class="about-features">
+                        <li class="reveal">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-5Z"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <div>
+                                <h4>Godīgi darījumi</h4>
+                                <p>Skaidri līgumi, godīgs novērtējums, dokumentācija atbilstoši VMD prasībām.</p>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-7 8-13a8 8 0 0 0-16 0c0 6 8 13 8 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            </div>
+                            <div>
+                                <h4>Vietējie speciālisti</h4>
+                                <p>Bāzēti Siguldā - Latvijas "Šveicē", Gaujas senielejā.</p>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+                            </div>
+                            <div>
+                                <h4>Ilgtspējīga apsaimniekošana</h4>
+                                <p>Atbildīga ciršana, atjaunošana un meža kapitāla saglabāšana ilgtermiņā.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow reveal">Pakalpojumi</span>
+                <h2 class="section-title reveal">Jūsu <span class="accent">mežs</span> = mūsu <span class="accent">ekspertīze</span>!</h2>
+                <p class="section-lead reveal">
+                    Piedāvājam pilna cikla risinājumus meža īpašniekiem. Izvēlieties vienu pakalpojumu
+                    vai uzticiet mums visu meža apsaimniekošanas ciklu.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M24 4 14 18h6l-7 11h6l-7 11h24l-7-11h6l-7-11h6L24 4Z"/>
+                            <path d="M24 40v4"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">01</span>
+                    <h3>Mežizstrāde</h3>
+                    <p>Galvenās un kopšanas cirtes, sanitārā cirte, vējgāžu likvidēšana. Mūsdienīga tehnika un sertificēti operatori.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 40h32M14 40V20l10-8 10 8v20"/>
+                            <path d="M20 40V28h8v12"/>
+                            <path d="M24 12V4"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">02</span>
+                    <h3>Cirsmu iegāde</h3>
+                    <p>Pērkam augošu mežu un cirsmas visā Latvijā. Godīgs novērtējums, ātra apmaksa, juridiskais noformējums.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M24 4v40"/>
+                            <path d="M24 12c-6 0-10 4-10 10 0-6-4-10-10-10"/>
+                            <path d="M24 22c-6 0-10 4-10 10 0-6-4-10-10-10"/>
+                            <path d="M24 12c6 0 10 4 10 10 0-6 4-10 10-10"/>
+                            <path d="M24 22c6 0 10 4 10 10 0-6 4-10 10-10"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">03</span>
+                    <h3>Meža atjaunošana</h3>
+                    <p>Augsnes sagatavošana, stādu piegāde, stādīšana un agrotehniskā kopšana. Mežs paaudzēm pēc jums.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="4" y="14" width="40" height="22" rx="2"/>
+                            <path d="M14 14V8h20v6"/>
+                            <circle cx="14" cy="40" r="4"/>
+                            <circle cx="34" cy="40" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">04</span>
+                    <h3>Pievešana un transports</h3>
+                    <p>Kokmateriālu pievešana, krautņošana un piegāde uz pircēju. Logistika visos Latvijas reģionos.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="6" y="6" width="36" height="36" rx="3"/>
+                            <path d="M14 18h20M14 26h20M14 34h12"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">05</span>
+                    <h3>Meža inventarizācija</h3>
+                    <p>Profesionāla meža taksācija, dastošana un cirsmu izstrādes plānošana sadarbībā ar sertificētiem mērniekiem.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+
+                <article class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="24" cy="24" r="18"/>
+                            <path d="M24 14v10l7 4"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">06</span>
+                    <h3>Konsultācijas</h3>
+                    <p>Bezmaksas pirmā konsultācija meža īpašniekiem. Palīdzam izlemt: cirst, pārdot vai gaidīt.</p>
+                    <span class="service-link">Uzzināt vairāk →</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section process" id="process">
+        <div class="container">
+            <div class="section-header center">
+                <span class="eyebrow reveal">Darba process</span>
+                <h2 class="section-title reveal">Četri soļi līdz <span class="accent">apkoptai cirsmai</span>.</h2>
+                <p class="section-lead reveal">Caurspīdīga sadarbība no pirmā zvana.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-num">01</div>
+                    <h4>Saruna un apskate</h4>
+                    <p>Sazināmies un izbraucam apskatīt jūsu īpašumu.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">02</div>
+                    <h4>Novērtējums</h4>
+                    <p>Veicam taksāciju un sastādām caurspīdīgu cenas piedāvājumu - gan cirsmai, gan apkalpošanai.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">03</div>
+                    <h4>Līgums un izstrāde</h4>
+                    <p>Slēdzam līgumu, sakārtojam dokumentus VMD un sākam darbus atbilstoši plānam.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">04</div>
+                    <h4>Atjaunošana</h4>
+                    <p>Pēc darbiem sakopjam teritoriju un parūpējamies par jaunaudzes ieaudzēšanu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section team" id="team">
+        <div class="container">
+            <div class="section-header center">
+                <span class="eyebrow reveal">Personāls</span>
+                <h2 class="section-title reveal">Cilvēki, kas <span class="accent">strādā mežā</span>.</h2>
+                <p class="section-lead reveal">
+                    Sazinies tieši ar atbildīgo speciālistu — bez birokrātijas un atstarotām vēstulēm.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <article class="team-card reveal">
+                    <div class="team-avatar avatar-mint">
+                        <span>MB</span>
+                    </div>
+                    <h3 class="team-name">Matīss Builis</h3>
+                    <span class="team-role">Direktors</span>
+                    <a href="mailto:matiss@manessa.lv" class="team-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                        matiss@manessa.lv
+                    </a>
+                </article>
+
+                <article class="team-card reveal">
+                    <div class="team-avatar avatar-beige">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <rect x="4" y="3" width="16" height="18" rx="2"/>
+                            <path d="M8 7h8M8 11h8M8 15h5"/>
+                        </svg>
+                    </div>
+                    <h3 class="team-name">Grāmatvedība</h3>
+                    <span class="team-role">Finanses &amp; administrācija</span>
+                    <a href="mailto:gramatvediba@manessa.lv" class="team-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                        gramatvediba@manessa.lv
+                    </a>
+                </article>
+
+                <article class="team-card reveal">
+                    <div class="team-avatar avatar-brown">
+                        <span>K</span>
+                    </div>
+                    <h3 class="team-name">Kristofers</h3>
+                    <span class="team-role">Mežsaimniecības speciālists</span>
+                    <a href="mailto:kristofers@manessa.lv" class="team-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                        kristofers@manessa.lv
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats / Counter -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item reveal">
+                <div class="stat-num"><span data-count="850">0</span>+</div>
+                <div class="stat-label">apsaimniekoti hektāri</div>
+            </div>
+            <div class="stat-item reveal">
+                <div class="stat-num"><span data-count="120">0</span></div>
+                <div class="stat-label">apmierināti īpašnieki</div>
+            </div>
+            <div class="stat-item reveal">
+                <div class="stat-num"><span data-count="42000">0</span></div>
+                <div class="stat-label">iestādīti stādi</div>
+            </div>
+            <div class="stat-item reveal">
+                <div class="stat-num"><span data-count="15">0</span></div>
+                <div class="stat-label">novadi Vidzemē un Latgalē</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow reveal">Projekti</span>
+                <h2 class="section-title reveal">Nesen <span class="accent">paveiktais</span>.</h2>
+                <p class="section-lead reveal">Daži no mūsu darbiem Vidzemes un Latgales mežos.</p>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card project-large reveal">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=80" alt="Galvenā cirte priežu mežā" loading="lazy" />
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Galvenā cirte</span>
+                        <h3>Priežu mežs Krimuldas pagastā</h3>
+                        <p>32 ha cirsma ar pilnu meža atjaunošanu. Latvāņu izskaušana, augsnes sagatavošana un 18 000 priežu stādu iestādīšana.</p>
+                        <span class="project-meta">2025 · Krimuldas novads</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80" alt="Egļu jaunaudze" loading="lazy" />
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Kopšanas cirte</span>
+                        <h3>Egļu jaunaudze Siguldā</h3>
+                        <span class="project-meta">2025 · Siguldas novads</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1574482620881-832ac4b32a5d?auto=format&fit=crop&w=800&q=80" alt="Vējgāžu likvidēšana" loading="lazy" />
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Sanitārā cirte</span>
+                        <h3>Vējgāžu likvidēšana Cēsīs</h3>
+                        <span class="project-meta">2025 · Cēsu novads</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118?auto=format&fit=crop&w=800&q=80" alt="Bērzu mežs" loading="lazy" />
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Cirsmas iegāde</span>
+                        <h3>Bērzu cirsma Limbažos</h3>
+                        <span class="project-meta">2024 · Limbažu novads</span>
+                    </div>
+                </article>
+
+                <article class="project-card project-wide reveal">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=1200&q=80" alt="Meža atjaunošana" loading="lazy" />
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Meža atjaunošana</span>
+                        <h3>24 000 stādu Madonā</h3>
+                        <p>Lielākais 2025. gada atjaunošanas projekts — egļu un priežu jaunaudze 45 ha platībā.</p>
+                        <span class="project-meta">2025 · Madonas novads</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content reveal">
+                <svg class="quote-mark" viewBox="0 0 48 48" fill="currentColor"><path d="M14 8C8 8 4 14 4 22v18h16V22h-8c0-4 2-8 6-8V8zm24 0c-6 0-10 6-10 14v18h16V22h-8c0-4 2-8 6-8V8z"/></svg>
+                <p class="testimonial-text">
+                    "Manessa džeki pret manu vectēva mantoto mežu izturējās kā pret savu.
+                    Skaidrs novērtējums, godīga cena un pats svarīgākais - tagad tur aug jauna priežu jaunaudze."
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JK</div>
+                    <div>
+                        <div class="testimonial-name">Jānis Kalniņš</div>
+                        <div class="testimonial-role">Meža īpašnieks · Cēsu novads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="eyebrow reveal">Kontakti</span>
+                    <h2 class="section-title reveal">Sāksim <span class="accent">sarunu</span>.</h2>
+                    <p class="section-lead reveal">
+                        Vai jums pieder mežs un domājat par cirsmu, pārdošanu vai apsaimniekošanu?
+                        Pirmā konsultācija ir bez maksas.
+                    </p>
+
+                    <ul class="contact-list">
+                        <li class="reveal">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Birojs</span>
+                                <a href="https://maps.google.com/?q=Nurmižu+ceļš+8+Sigulda" target="_blank" rel="noopener">Nurmižu ceļš 8, Sigulda, LV-2150</a>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Tālrunis</span>
+                                <a href="tel:+37126549211">+371 26549211</a>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">E-pasts</span>
+                                <a href="mailto:info@manessa.lv">matiss@manessa.lv</a>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Reģ. nr.</span>
+                                <span>40203720328</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="contact-form reveal" id="contact-form">
+                    <h3>Pieteikt cirsmu vai konsultāciju</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Vārds, uzvārds *</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Tālrunis *</label>
+                            <input type="tel" id="phone" name="phone" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-pasts</label>
+                        <input type="email" id="email" name="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Pakalpojums</label>
+                        <select id="service" name="service">
+                            <option>Mežizstrāde</option>
+                            <option>Cirsmas pārdošana</option>
+                            <option>Meža atjaunošana</option>
+                            <option>Konsultācija</option>
+                            <option>Cits</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Īsumā par jūsu mežu (atrašanās vieta, platība, koku suga)</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Nosūtīt pieteikumu
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                    <p class="form-note">* Atbildēsim 24h laikā darba dienās.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Manessa" class="footer-logo" />
+                    <p>Mežs ir mantojums, kas jākopj ar atbildību. Strādājam Vidzemē, Latgalē un visā Latvijā.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Pakalpojumi</h5>
+                    <ul>
+                        <li><a href="#services">Mežizstrāde</a></li>
+                        <li><a href="#services">Cirsmu iegāde</a></li>
+                        <li><a href="#services">Meža atjaunošana</a></li>
+                        <li><a href="#services">Konsultācijas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Uzņēmums</h5>
+                    <ul>
+                        <li><a href="#about">Par mums</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#team">Komanda</a></li>
+                        <li><a href="#projects">Projekti</a></li>
+                        <li><a href="#contact">Kontakti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>SIA "Manessa"</h5>
+                    <ul>
+                        <li>Reģ. nr.: 40203720328</li>
+                        <li>PVN: LV40203720328</li>
+                        <li>Nurmižu ceļš 8, Sigulda</li>
+                        <li><a href="mailto:info@manessa.lv">info@manessa.lv</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> SIA "Manessa". Visas tiesības aizsargātas.</span>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#hero" class="back-to-top" id="back-to-top" aria-label="Atpakaļ uz augšu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

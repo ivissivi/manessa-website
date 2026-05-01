@@ -1,0 +1,19 @@
+# Vercel
+.vercel
+.env*.local
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (ja lieto Vercel CLI)
+node_modules/
+npm-debug.log*
+
+# Logs
+*.log
