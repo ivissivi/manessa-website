@@ -444,13 +444,16 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     margin-bottom: 4rem;
 }
 .hero .btn-ghost {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.4);
-}
-.hero .btn-ghost:hover {
     background: #fff;
     color: var(--color-brown);
-    border-color: #fff;
+    border: 1.5px solid #fff;
+}
+.hero .btn-ghost:hover {
+    background: var(--color-mint-dark);
+    color: #fff;
+    border-color: var(--color-mint-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(79, 179, 158, 0.35);
 }
 
 .hero-stats {
