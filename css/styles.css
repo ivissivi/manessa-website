@@ -848,13 +848,14 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.8rem;
-    max-width: 1160px;
+    max-width: 1280px;
     margin: 0 auto;
 }
 
 .team-card {
+    min-width: 0;
     background: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -895,9 +896,10 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 .team-card:hover .team-avatar {
     transform: scale(1.05);
 }
+/* Unified tint: mint on avatar-brown reads too faint vs brown currentColor elsewhere */
 .team-card:hover .team-avatar::before {
-    border-color: currentColor;
-    opacity: 0.4;
+    border-color: rgba(79, 179, 158, 0.65);
+    opacity: 1;
 }
 .team-avatar svg {
     width: 38px;
@@ -936,10 +938,15 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 
 .team-email {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
-    padding: 10px 18px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px 16px;
     background: var(--color-bg-alt);
     border-radius: var(--radius-pill);
     font-size: 0.88rem;
@@ -948,6 +955,8 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     transition: all var(--transition);
     border: 1px solid transparent;
     text-decoration: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 .team-email svg {
     width: 16px;
