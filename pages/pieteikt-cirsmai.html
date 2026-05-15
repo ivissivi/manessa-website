@@ -1,0 +1,52 @@
+        <section class="section apply-page" id="pieteikt">
+            <div class="container apply-page-inner">
+                <div class="section-header">
+                    <span class="eyebrow reveal">Pieteikums</span>
+                    <h1 class="section-title reveal">Pieteikt <span class="accent">cirsmu</span> vai konsultāciju</h1>
+                    <p class="section-lead reveal">
+                        Aizpildiet formu — sazināsimies un vienojamies par nākamajiem soļiem.
+                        Varat arī uzrakstīt vai zvanīt tieši — kontaktinformācija lapā <a href="/kontakti">Kontakti</a>.
+                    </p>
+                </div>
+
+                <form class="contact-form reveal apply-page-form" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Vārds, uzvārds *</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Tālrunis *</label>
+                            <input type="tel" id="phone" name="phone" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-pasts</label>
+                        <input type="email" id="email" name="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Pakalpojums</label>
+                        <select id="service" name="service">
+                            <option>Mežizstrāde</option>
+                            <option>Cirsmas pārdošana</option>
+                            <option>Meža atjaunošana</option>
+                            <option>Konsultācija</option>
+                            <option>Cits</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Īsumā par jūsu mežu (atrašanās vieta, platība, koku suga)</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Nosūtīt pieteikumu
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                    <p class="form-note">* Atbildēsim 24h laikā darba dienās.</p>
+                </form>
+            </div>
+        </section>

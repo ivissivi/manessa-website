@@ -14,39 +14,44 @@ Statiska, viena lapas mājaslapa SIA "Manessa" (reģ. nr. 40203720328) — Sigul
 ## Struktūra
 
 ```
-manessa_website/
-├── index.html          # galvenā lapa (Latvian)
-├── css/styles.css      # stili ar Manessa krāsu paleti
-├── js/script.js        # animācijas, scroll reveal, skaitītāji, mobilā nav.
-├── assets/logo.png     # uzņēmuma logo
-└── README.md
+manessa-website/
+├── index.html              # sākums (hero + statistika)
+├── par-mums.html           # /par-mums
+├── pakalpojumi.html        # /pakalpojumi
+├── process.html            # /process
+├── komanda.html            # /komanda
+├── projekti.html           # /projekti
+├── suveniri.html           # /suveniri
+├── kontakti.html           # /kontakti
+├── partials/               # kopīgais header/footer (build avots)
+├── pages/                  # lapu saturs (build avots)
+├── scripts/build.js        # ģenerē HTML no partials + pages
+├── css/styles.css
+├── js/script.js
+└── assets/logo.png
 ```
 
-## Sadaļas
+## Maršruti
 
-1. **Hero** — galvenais banneris ar saukli un statistiku
-2. **Par mums** — uzņēmuma stāsts un priekšrocības
-3. **Pakalpojumi** — 6 mežsaimniecības pakalpojumu kartiņas
-4. **Process** — 4 soļu sadarbības process
-5. **Statistika** — animēti skaitītāji (hektāri, klienti, stādi)
-6. **Projekti** — portfolio režģis ar nesen paveiktiem darbiem
-7. **Atsauksme** — meža īpašnieka citāts
-8. **Kontakti** — kontaktinformācija + pieteikuma forma
-9. **Footer** — UR rekvizīti un ātrās saites
+| URL | Lapa |
+|-----|------|
+| `/` | Sākums |
+| `/par-mums` | Par mums |
+| `/pakalpojumi` | Pakalpojumi |
+| `/process` | Darba process |
+| `/komanda` | Komanda |
+| `/projekti` | Projekti + atsauksme |
+| `/suveniri` | Suvenīri |
+| `/kontakti` | Kontakti |
 
 ## Palaišana
 
-Atver `index.html` pārlūkprogrammā vai palaid jebkuru statisko serveri:
-
 ```bash
-# Python
-python -m http.server 8000
-
-# Node
-npx serve .
+npm run build   # pēc izmaiņām partials/ vai pages/
+npm run dev     # http://localhost:3000
 ```
 
-Pēc tam atver `http://localhost:8000`.
+Vai: `npx serve .` pēc `npm run build`.
 
 ## Tehnoloģijas
 
@@ -57,6 +62,6 @@ Pēc tam atver `http://localhost:8000`.
 
 ## Pielāgojumi
 
-- Tālrunis, e-pasts un tīkla saites: meklē `+371 2000 0000`, `info@manessa.lv` failā `index.html`
+- Tālrunis, e-pasts un tīkla saites: meklē `+371 2000 0000`, `matiss@manessa.lv` failā `index.html`
 - Krāsas: maini CSS mainīgos `:root` blokā failā `css/styles.css`
 - Saturs: visas tekstuālās vērtības atrodas tieši `index.html` (vienkārši rediģējams)

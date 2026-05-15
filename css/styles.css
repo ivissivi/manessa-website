@@ -68,6 +68,15 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.page-main {
+    flex: 1 0 auto;
+    width: 100%;
 }
 
 img {
@@ -152,14 +161,25 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     max-width: 720px;
     margin-bottom: 4rem;
 }
-.section-header.center {
+.section-header.center,
+body.page-inner .section-header {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    max-width: 720px;
 }
-.section-header.center .eyebrow { padding-left: 48px; }
-.section-header.center .eyebrow::before {
+.section-header.center .eyebrow,
+body.page-inner .section-header .eyebrow {
+    padding-left: 48px;
+}
+.section-header.center .eyebrow::before,
+body.page-inner .section-header .eyebrow::before {
     left: 12px;
+}
+
+body.page-inner .section-lead {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section-title {
@@ -280,12 +300,38 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     filter: brightness(1.18) contrast(0.95)
             drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 }
-.header.scrolled {
+.header.scrolled,
+body.page-inner .header {
     background: rgba(31, 26, 23, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     padding: 12px 0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.18);
+}
+body.page-inner .header::before {
+    opacity: 0;
+}
+body.page-inner .nav-logo img {
+    filter: none;
+}
+
+body.page-inner .page-main {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Viena atstarpe zem fiksētās galvenes — fons sākas uzreiz, bez gaišas joslas */
+body.page-inner .page-main > section:first-child {
+    padding-top: calc(var(--scroll-offset) + clamp(2rem, 5vw, 3.5rem));
+}
+
+body.page-inner .about .section-header {
+    margin-bottom: 3.5rem;
+}
+
+/* Vienas sadaļas lapas (process, komanda, suvenīri u.c.) — fons līdz footer */
+body.page-inner .page-main > section:only-child {
+    flex: 1;
 }
 
 .nav-container {
@@ -333,6 +379,12 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     color: var(--color-mint);
 }
 .nav-link:hover::after {
+    width: 100%;
+}
+.nav-link.active {
+    color: var(--color-mint);
+}
+.nav-link.active::after {
     width: 100%;
 }
 .nav-cta {
@@ -486,11 +538,12 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 
 .hero-scroll {
+    /* Pagaidām paslēpts; atgriezt: display: flex */
+    display: none;
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -1206,11 +1259,53 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 
 /* ==========  SUVENĪRI (drīzumā)  ========== */
+/* ==========  HOME NAV GRID  ========== */
+.home-nav {
+    background: var(--color-bg-alt);
+}
+.home-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.home-nav-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.4rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-weight: 600;
+    color: var(--color-brown);
+    transition: all var(--transition);
+}
+.home-nav-card:hover {
+    border-color: var(--color-mint);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    color: var(--color-mint-dark);
+}
+.home-nav-card-accent {
+    background: var(--color-brown);
+    color: var(--color-bg);
+    border-color: transparent;
+}
+.home-nav-card-accent:hover {
+    background: var(--color-mint-dark);
+    color: var(--color-brown);
+}
+.home-nav-arrow {
+    opacity: 0.5;
+    font-size: 1.1rem;
+}
+
 .souvenir-teaser {
     padding-top: clamp(40px, 7vw, 56px);
     padding-bottom: clamp(48px, 8vw, 72px);
-    /* Extra space below so anchor scroll can stop with the card under the header, not on Kontakti */
-    margin-bottom: clamp(5rem, 16vh, 9rem);
     background: linear-gradient(
         158deg,
         var(--color-beige-light) 0%,
@@ -1219,9 +1314,10 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     );
 }
 .souvenir-teaser-plank {
-    max-width: 720px;
+    max-width: 520px;
     margin: 0 auto;
-    padding: clamp(2rem, 5vw, 2.85rem) clamp(1.4rem, 4vw, 2.75rem);
+    padding: clamp(2rem, 5vw, 2.5rem) clamp(1.4rem, 4vw, 2.25rem);
+    text-align: center;
     background: var(--color-card);
     border-radius: var(--radius-lg);
     border: 2px dashed var(--color-beige);
@@ -1284,6 +1380,10 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
     background: var(--color-bg);
 }
 
+body.page-inner .contact .section-header {
+    margin-bottom: 3rem;
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -1293,9 +1393,9 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 
 .contact-list {
     margin-top: 2.5rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
 }
 .contact-list li {
     display: flex;
@@ -1331,6 +1431,42 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 }
 .contact-list a:hover {
     color: var(--color-mint-dark);
+}
+
+.contact-info-solo {
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info-solo .contact-list {
+    margin-top: 1rem;
+}
+
+.contact-after-list {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.contact-page-details .section-lead a {
+    color: var(--color-mint-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.contact-page-details .section-lead a:hover {
+    color: var(--color-brown);
+}
+
+.apply-page-inner {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apply-page-form {
+    margin-top: 0;
 }
 
 .contact-form {
@@ -1396,6 +1532,8 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 
 /* ==========  FOOTER  ========== */
 .footer {
+    flex-shrink: 0;
+    margin-top: auto;
     background: var(--color-bg-dark);
     color: rgba(250, 247, 242, 0.7);
     padding: 80px 0 30px;

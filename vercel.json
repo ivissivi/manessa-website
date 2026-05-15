@@ -1,6 +1,14 @@
 {
+  "buildCommand": "npm run build",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/about", "destination": "/par-mums", "permanent": true },
+    { "source": "/services", "destination": "/pakalpojumi", "permanent": true },
+    { "source": "/contact", "destination": "/kontakti", "permanent": true },
+    { "source": "/komanda", "destination": "/kontakti", "permanent": true },
+    { "source": "/sazinies", "destination": "/pieteikt-cirsmai", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -42,7 +50,7 @@
       ]
     },
     {
-      "source": "/index.html",
+      "source": "/(.*).html",
       "headers": [
         {
           "key": "Cache-Control",
