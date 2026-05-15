@@ -1,13 +1,28 @@
 /**
  * Builds static HTML pages from partials + page content.
+ * Writes deployable site to public/ (Vercel outputDirectory).
  * Run: node scripts/build.js
  */
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+const OUT = path.join(ROOT, 'public');
+
 const partials = (name) => fs.readFileSync(path.join(ROOT, 'partials', name), 'utf8');
 const pageContent = (name) => fs.readFileSync(path.join(ROOT, 'pages', name), 'utf8');
+
+function copyDir(src, dest) {
+    if (!fs.existsSync(src)) return;
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.cpSync(src, dest, { recursive: true });
+}
+
+function copyFileIfExists(src, dest) {
+    if (!fs.existsSync(src)) return;
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(src, dest);
+}
 
 const PAGES = [
     {
@@ -90,6 +105,17 @@ function renderHead({ title, description, pageId, bodyClass }) {
 const header = partials('header.html');
 const footer = partials('footer.html');
 
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
+
+['css', 'js', 'assets', 'images'].forEach((dir) => {
+    copyDir(path.join(ROOT, dir), path.join(OUT, dir));
+});
+
+['favicon.ico', 'sazinies.html', 'logo.png'].forEach((file) => {
+    copyFileIfExists(path.join(ROOT, file), path.join(OUT, file));
+});
+
 for (const page of PAGES) {
     const html =
         renderHead(page) +
@@ -99,9 +125,11 @@ for (const page of PAGES) {
         '\n    </main>\n\n' +
         footer;
 
-    const outPath = path.join(ROOT, page.out);
-    fs.writeFileSync(outPath, html, 'utf8');
-    console.log('Built', page.out);
+    const outPublic = path.join(OUT, page.out);
+    const outRoot = path.join(ROOT, page.out);
+    fs.writeFileSync(outPublic, html, 'utf8');
+    fs.writeFileSync(outRoot, html, 'utf8');
+    console.log('Built', page.out, '→ public/ + repo root');
 }
 
-console.log('Done —', PAGES.length, 'pages');
+console.log('Done —', PAGES.length, 'pages →', path.relative(ROOT, OUT));

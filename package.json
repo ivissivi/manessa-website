@@ -3,6 +3,6 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "npx serve ."
+    "dev": "node scripts/build.js && npx serve public"
   }
 }

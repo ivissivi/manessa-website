@@ -1,3 +1,6 @@
+# Build output (Vercel deploy root)
+public/
+
 # Vercel
 .vercel
 .env*.local
