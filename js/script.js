@@ -32,6 +32,45 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    const getScrollOffset = () => (header ? header.offsetHeight + 16 : 92);
+
+    const scrollToTarget = (target, behavior = 'smooth') => {
+        const offset = getScrollOffset();
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        let top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+        if (top > maxScroll) {
+            const elemH = target.offsetHeight;
+            const vh = window.innerHeight;
+            if (elemH < vh - offset) {
+                top = target.offsetTop - (vh - elemH) * 0.28;
+            }
+        }
+
+        top = Math.max(0, Math.min(top, maxScroll));
+        window.scrollTo({ top, behavior });
+    };
+
+    /* ----------  ANCHOR SCROLL (header offset + bottom sections)  ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+            const hash = link.getAttribute('href');
+            if (!hash || hash.length < 2) return;
+
+            const target = document.querySelector(hash);
+            if (!target) return;
+
+            e.preventDefault();
+            scrollToTarget(target, 'smooth');
+
+            if (history.pushState) {
+                history.pushState(null, '', hash);
+            } else {
+                location.hash = hash;
+            }
+        });
+    });
+
     /* ----------  MOBILE NAVIGATION  ---------- */
     const navToggle = document.getElementById('nav-toggle');
     const nav = document.getElementById('nav');

@@ -34,6 +34,7 @@
     /* Spacing */
     --container: 1240px;
     --section-padding: clamp(64px, 10vw, 130px);
+    --scroll-offset: 5.75rem; /* fixed header — anchor scroll */
     --radius: 14px;
     --radius-lg: 22px;
     --radius-pill: 999px;
@@ -54,6 +55,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--scroll-offset);
     -webkit-text-size-adjust: 100%;
 }
 
@@ -1207,6 +1209,8 @@ h5 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-tran
 .souvenir-teaser {
     padding-top: clamp(40px, 7vw, 56px);
     padding-bottom: clamp(48px, 8vw, 72px);
+    /* Extra space below so anchor scroll can stop with the card under the header, not on Kontakti */
+    margin-bottom: clamp(5rem, 16vh, 9rem);
     background: linear-gradient(
         158deg,
         var(--color-beige-light) 0%,
