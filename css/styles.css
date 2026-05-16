@@ -1678,24 +1678,52 @@ body.page-inner .contact .section-header {
     }
 
     .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         padding-left: 0;
-        padding-top: 18px;
-        display: inline-block;
+        padding-top: 0;
         margin-left: auto;
         margin-right: auto;
     }
     .eyebrow::before {
-        left: 50%;
-        top: 0;
-        bottom: auto;
-        transform: translateX(-50%);
+        position: static;
+        left: auto;
+        top: auto;
+        transform: none;
+        flex-shrink: 0;
+        width: 26px;
+        height: 1px;
     }
-    .section-header.center .eyebrow {
+    .section-header.center .eyebrow,
+    body.page-inner .section-header .eyebrow {
         padding-left: 0;
     }
-    .section-header.center .eyebrow::before {
-        left: 50%;
-        transform: translateX(-50%);
+    .section-header.center .eyebrow::before,
+    body.page-inner .section-header .eyebrow::before {
+        left: auto;
+        transform: none;
+    }
+
+    body.page-inner .section-header {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .section-header .section-title {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        text-wrap: balance;
+        line-height: 1.2;
+    }
+
+    body.page-inner .section-header .section-title {
+        font-size: clamp(1.65rem, 6.8vw, 2.15rem);
+    }
+
+    body.page-inner .section-header h1.section-title {
+        font-size: clamp(1.85rem, 7.5vw, 2.35rem);
     }
 
     .section-header:not(.center) {
@@ -1920,6 +1948,18 @@ body.page-inner .contact .section-header {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding-inline: 18px;
+    }
+
+    body.page-inner .section-header .section-title {
+        font-size: clamp(1.5rem, 6.2vw, 1.95rem);
+    }
+
+    body.page-inner .section-header h1.section-title {
+        font-size: clamp(1.65rem, 6.8vw, 2.05rem);
+    }
+
     .hero-stats {
         grid-template-columns: 1fr;
         text-align: center;
