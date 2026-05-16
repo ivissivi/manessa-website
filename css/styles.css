@@ -1523,13 +1523,6 @@ body.page-inner .contact .section-header {
     box-shadow: 0 0 0 4px rgba(111, 201, 181, 0.15);
 }
 
-.form-note {
-    font-size: 0.8rem;
-    color: var(--color-brown-light);
-    text-align: center;
-    margin-top: 1rem;
-}
-
 /* ==========  FOOTER  ========== */
 .footer {
     flex-shrink: 0;
@@ -1841,9 +1834,6 @@ body.page-inner .contact .section-header {
     .form-group input,
     .form-group select,
     .form-group textarea {
-        text-align: center;
-    }
-    .form-note {
         text-align: center;
     }
 
