@@ -1,6 +1,6 @@
-# Manessa — meža apsaimniekošanas portfolio mājaslapa
+# Manessa - meža apsaimniekošanas portfolio mājaslapa
 
-Statiska, viena lapas mājaslapa SIA "Manessa" (reģ. nr. 40203720328) — Siguldas mežizstrādes uzņēmumam.
+Statiska, viena lapas mājaslapa SIA "Manessa" (reģ. nr. 40203720328) - Siguldas mežizstrādes uzņēmumam.
 
 ## Krāsu palete (no logo)
 

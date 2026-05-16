@@ -80,7 +80,7 @@ const PAGES = [
         bodyClass: 'page-inner',
         title: 'Pieteikt cirsmu | Manessa',
         description:
-            'Iesniedziet pieteikumu ciršanai vai konsultācijai — SIA Manessa Siguldā un visā Latvijā.',
+            'Iesniedziet pieteikumu ciršanai vai konsultācijai - SIA Manessa Siguldā un visā Latvijā.',
         content: 'pieteikt-cirsmai.html',
     },
     {
@@ -89,7 +89,7 @@ const PAGES = [
         bodyClass: 'page-inner',
         title: 'Kontakti | Manessa',
         description:
-            'Manessa komanda, kontaktinformācija un uzņēmuma rekvizīti — Siguldā un visā Latvijā.',
+            'Manessa komanda, kontaktinformācija un uzņēmuma rekvizīti - Siguldā un visā Latvijā.',
         content: 'kontakti.html',
     },
 ];
@@ -132,4 +132,4 @@ for (const page of PAGES) {
     console.log('Built', page.out, '→ public/ + repo root');
 }
 
-console.log('Done —', PAGES.length, 'pages →', path.relative(ROOT, OUT));
+console.log('Done -', PAGES.length, 'pages →', path.relative(ROOT, OUT));
