@@ -762,10 +762,10 @@ body.page-inner .page-main > section:only-child {
 .service-card:hover::before {
     opacity: 1;
 }
-.service-card:hover h3,
+.service-card:hover h2,
 .service-card:hover p,
 .service-card:hover .service-link {
-    color: #fff;
+    color: var(--color-bg);
 }
 .service-card:hover .service-icon {
     background: var(--color-mint);
