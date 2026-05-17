@@ -146,6 +146,23 @@
     /* ----------  PIETEIKUMA FORMA  ---------- */
     const form = document.getElementById('contact-form');
     if (form) {
+        /* Honeypot — tikai JS, lai cilvēki neredzētu (CSS slēpšana nestrādāja uzticami) */
+        let honeypotInput = null;
+        if (!form.querySelector('[data-honeypot]')) {
+            honeypotInput = document.createElement('input');
+            honeypotInput.type = 'text';
+            honeypotInput.name = 'website';
+            honeypotInput.setAttribute('data-honeypot', 'true');
+            honeypotInput.tabIndex = -1;
+            honeypotInput.autocomplete = 'off';
+            honeypotInput.setAttribute('aria-hidden', 'true');
+            honeypotInput.style.cssText =
+                'position:fixed;left:-10000px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+            form.appendChild(honeypotInput);
+        } else {
+            honeypotInput = form.querySelector('[data-honeypot]');
+        }
+
         const submitBtn = form.querySelector('button[type="submit"]');
         const statusEl = document.getElementById('form-status');
         const originalHTML = submitBtn ? submitBtn.innerHTML : '';
@@ -185,7 +202,7 @@
                 email: form.email?.value ?? '',
                 service: form.service?.value ?? '',
                 message: form.message?.value ?? '',
-                website: form.website?.value ?? '',
+                website: honeypotInput?.value ?? '',
             };
 
             try {
