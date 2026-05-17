@@ -57,7 +57,7 @@ Vai: `npx serve .` pēc `npm run build`.
 
 - HTML5, CSS3 (custom properties, grid, flexbox)
 - Vanilla JavaScript (IntersectionObserver, requestAnimationFrame)
-- Google Fonts: Inter + Cormorant Garamond
+- Google Fonts: Source Sans 3 + Source Serif 4 (Latin Extended / LV)
 - Unsplash attēli (placeholder; aizstājiet ar reāliem mežu attēliem)
 
 ## Pielāgojumi

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Redirect-only legacy page
+Disallow: /sazinies.html
+
+Sitemap: https://www.manessa.lv/sitemap.xml

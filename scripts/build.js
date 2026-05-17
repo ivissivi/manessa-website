@@ -9,6 +9,9 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'public');
 
+/** Production URL — set SITE_URL in Vercel env if the domain differs */
+const SITE_URL = (process.env.SITE_URL || 'https://www.manessa.lv').replace(/\/$/, '');
+
 const partials = (name) => fs.readFileSync(path.join(ROOT, 'partials', name), 'utf8');
 const pageContent = (name) => fs.readFileSync(path.join(ROOT, 'pages', name), 'utf8');
 
@@ -94,6 +97,48 @@ const PAGES = [
     },
 ];
 
+/** Public routes for sitemap (matches cleanUrls + nav; excludes redirects) */
+const SITEMAP_ROUTES = [
+    { path: '/', changefreq: 'weekly', priority: '1.0' },
+    { path: '/par-mums', changefreq: 'monthly', priority: '0.9' },
+    { path: '/pakalpojumi', changefreq: 'monthly', priority: '0.9' },
+    { path: '/process', changefreq: 'monthly', priority: '0.8' },
+    { path: '/projekti', changefreq: 'weekly', priority: '0.8' },
+    { path: '/pieteikt-cirsmai', changefreq: 'monthly', priority: '0.8' },
+    { path: '/kontakti', changefreq: 'monthly', priority: '0.8' },
+    { path: '/suveniri', changefreq: 'monthly', priority: '0.6' },
+];
+
+function writeRobotsTxt() {
+    const content = `User-agent: *
+Allow: /
+
+# Redirect-only legacy page
+Disallow: /sazinies.html
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+    return content;
+}
+
+function writeSitemapXml() {
+    const lastmod = new Date().toISOString().slice(0, 10);
+    const urlEntries = SITEMAP_ROUTES.map(
+        ({ path: routePath, changefreq, priority }) => `  <url>
+    <loc>${SITE_URL}${routePath === '/' ? '/' : routePath}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`
+    ).join('\n');
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries}
+</urlset>
+`;
+}
+
 function renderHead({ title, description, pageId, bodyClass }) {
     return partials('head.html')
         .replace('{{title}}', title)
@@ -131,5 +176,14 @@ for (const page of PAGES) {
     fs.writeFileSync(outRoot, html, 'utf8');
     console.log('Built', page.out, '→ public/ + repo root');
 }
+
+const robotsTxt = writeRobotsTxt();
+const sitemapXml = writeSitemapXml();
+for (const name of ['robots.txt', 'sitemap.xml']) {
+    const body = name === 'robots.txt' ? robotsTxt : sitemapXml;
+    fs.writeFileSync(path.join(OUT, name), body, 'utf8');
+    fs.writeFileSync(path.join(ROOT, name), body, 'utf8');
+}
+console.log('Built robots.txt + sitemap.xml → public/ + repo root');
 
 console.log('Done -', PAGES.length, 'pages →', path.relative(ROOT, OUT));
