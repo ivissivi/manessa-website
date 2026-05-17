@@ -1513,6 +1513,7 @@ body.page-404 .error-page .container {
 }
 
 .contact-form {
+    position: relative;
     background: var(--color-card);
     padding: 2.5rem;
     border-radius: var(--radius-lg);
@@ -1566,12 +1567,45 @@ body.page-404 .error-page .container {
     box-shadow: 0 0 0 4px rgba(111, 201, 181, 0.15);
 }
 
-.form-honeypot {
+.visually-hidden {
     position: absolute;
-    left: -10000px;
     width: 1px;
     height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-honeypot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.form-honeypot label,
+.form-honeypot input {
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
 }
 
 .form-status {
