@@ -78,13 +78,13 @@ const PAGES = [
         content: 'suveniri.html',
     },
     {
-        out: 'pieteikt-cirsmai.html',
+        out: 'pieteikt-cirsmu.html',
         pageId: 'apply',
         bodyClass: 'page-inner',
         title: 'Pieteikt cirsmu | Manessa',
         description:
             'Iesniedziet pieteikumu ciršanai vai konsultācijai - SIA Manessa Siguldā un visā Latvijā.',
-        content: 'pieteikt-cirsmai.html',
+        content: 'pieteikt-cirsmu.html',
     },
     {
         out: 'kontakti.html',
@@ -104,7 +104,7 @@ const SITEMAP_ROUTES = [
     { path: '/pakalpojumi', changefreq: 'monthly', priority: '0.9' },
     { path: '/process', changefreq: 'monthly', priority: '0.8' },
     { path: '/projekti', changefreq: 'weekly', priority: '0.8' },
-    { path: '/pieteikt-cirsmai', changefreq: 'monthly', priority: '0.8' },
+    { path: '/pieteikt-cirsmu', changefreq: 'monthly', priority: '0.8' },
     { path: '/kontakti', changefreq: 'monthly', priority: '0.8' },
     { path: '/suveniri', changefreq: 'monthly', priority: '0.6' },
 ];
@@ -186,4 +186,29 @@ for (const name of ['robots.txt', 'sitemap.xml']) {
 }
 console.log('Built robots.txt + sitemap.xml → public/ + repo root');
 
-console.log('Done -', PAGES.length, 'pages →', path.relative(ROOT, OUT));
+const notFound = {
+    out: '404.html',
+    pageId: '404',
+    bodyClass: 'page-inner page-404',
+    title: 'Lapa nav atrasta | Manessa',
+    description: 'Pieprasītā lapa netika atrasta. Atgriezieties Manessa sākumlapā vai sazinieties ar mums.',
+    content: '404.html',
+};
+
+const notFoundHtml =
+    renderHead(notFound).replace(
+        '</head>',
+        '    <meta name="robots" content="noindex, nofollow" />\n</head>'
+    ) +
+    header +
+    '\n    <main class="page-main" id="top">\n' +
+    pageContent(notFound.content) +
+    '\n    </main>\n\n' +
+    footer;
+
+for (const base of [OUT, ROOT]) {
+    fs.writeFileSync(path.join(base, notFound.out), notFoundHtml, 'utf8');
+}
+console.log('Built', notFound.out, '→ public/ + repo root');
+
+console.log('Done -', PAGES.length, 'pages + 404 →', path.relative(ROOT, OUT));

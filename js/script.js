@@ -143,31 +143,88 @@
         counters.forEach(animateCount);
     }
 
-    /* ----------  CONTACT FORM (demo)  ---------- */
+    /* ----------  PIETEIKUMA FORMA  ---------- */
     const form = document.getElementById('contact-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const statusEl = document.getElementById('form-status');
+        const originalHTML = submitBtn ? submitBtn.innerHTML : '';
+
+        const setStatus = (message, type) => {
+            if (!statusEl) {
+                return;
+            }
+            statusEl.textContent = message;
+            statusEl.hidden = !message;
+            statusEl.classList.remove('is-error', 'is-success');
+            if (type) {
+                statusEl.classList.add(type === 'error' ? 'is-error' : 'is-success');
+            }
+        };
+
+        const setSubmitting = (loading) => {
+            if (!submitBtn) {
+                return;
+            }
+            submitBtn.disabled = loading;
+            submitBtn.style.opacity = loading ? '0.7' : '1';
+            submitBtn.innerHTML = loading ? 'Nosūtām...' : originalHTML;
+            if (!loading) {
+                submitBtn.style.background = '';
+            }
+        };
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            setStatus('');
+            setSubmitting(true);
 
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalHTML = submitBtn.innerHTML;
+            const payload = {
+                name: form.name?.value ?? '',
+                phone: form.phone?.value ?? '',
+                email: form.email?.value ?? '',
+                service: form.service?.value ?? '',
+                message: form.message?.value ?? '',
+                website: form.website?.value ?? '',
+            };
 
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-            submitBtn.innerHTML = 'Nosūtām...';
+            try {
+                const response = await fetch('/api/pieteikums', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(payload),
+                });
 
-            setTimeout(() => {
-                submitBtn.innerHTML = '✓ Pieteikums nosūtīts!';
-                submitBtn.style.background = 'var(--color-mint-dark)';
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    const errMsg =
+                        data.error ||
+                        (data.errors && Object.values(data.errors).join(' ')) ||
+                        'Neizdevās nosūtīt. Mēģiniet vēlāk.';
+                    setStatus(errMsg, 'error');
+                    setSubmitting(false);
+                    return;
+                }
+
+                setStatus(data.message || 'Paldies! Jūsu pieteikums ir nosūtīts.', 'success');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '✓ Nosūtīts!';
+                    submitBtn.style.background = 'var(--color-mint-dark)';
+                }
+                form.reset();
 
                 setTimeout(() => {
-                    form.reset();
-                    submitBtn.innerHTML = originalHTML;
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = '1';
-                    submitBtn.style.background = '';
-                }, 2400);
-            }, 900);
+                    setSubmitting(false);
+                    setStatus('');
+                }, 4000);
+            } catch {
+                setStatus(
+                    'Savienojuma kļūda. Pārbaudiet internetu vai sazinieties tieši.',
+                    'error'
+                );
+                setSubmitting(false);
+            }
         });
     }
 

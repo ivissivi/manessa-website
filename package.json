@@ -1,8 +1,12 @@
 {
   "name": "manessa-website",
   "private": true,
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  },
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "node scripts/build.js && npx serve public"
+    "dev": "node scripts/build.js && npx serve public",
+    "dev:full": "vercel dev"
   }
 }

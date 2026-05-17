@@ -3,6 +3,8 @@ public/
 
 # Vercel
 .vercel
+.env
+.env.example
 .env*.local
 
 # Editors

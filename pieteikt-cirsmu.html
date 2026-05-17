@@ -34,7 +34,7 @@
                     <li><a href="/projekti" class="nav-link" data-nav="projects">Projekti</a></li>
                     <li><a href="/suveniri" class="nav-link" data-nav="suveniri">Suvenīri</a></li>
                 </ul>
-                <a href="/pieteikt-cirsmai" class="btn btn-primary nav-cta">Pieteikt cirsmu</a>
+                <a href="/pieteikt-cirsmu" class="btn btn-primary nav-cta">Pieteikt cirsmu</a>
             </nav>
             <button class="nav-toggle" id="nav-toggle" aria-label="Atvērt izvēlni">
                 <span></span><span></span><span></span>
@@ -54,21 +54,26 @@
                     </p>
                 </div>
 
-                <form class="contact-form reveal apply-page-form" id="contact-form">
+                <form class="contact-form reveal apply-page-form" id="contact-form" novalidate>
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="website">Neaizpildiet</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Vārds, uzvārds *</label>
-                            <input type="text" id="name" name="name" required />
+                            <input type="text" id="name" name="name" required autocomplete="name" />
                         </div>
                         <div class="form-group">
                             <label for="phone">Tālrunis *</label>
-                            <input type="tel" id="phone" name="phone" required />
+                            <input type="tel" id="phone" name="phone" required autocomplete="tel" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-pasts</label>
-                        <input type="email" id="email" name="email" />
+                        <input type="email" id="email" name="email" autocomplete="email" />
                     </div>
 
                     <div class="form-group">
@@ -86,6 +91,8 @@
                         <label for="message">Īsumā par jūsu mežu (atrašanās vieta, platība, koku suga)</label>
                         <textarea id="message" name="message" rows="4"></textarea>
                     </div>
+
+                    <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
 
                     <button type="submit" class="btn btn-primary btn-block">
                         Nosūtīt pieteikumu
@@ -112,7 +119,7 @@
                         <li><a href="/pakalpojumi">Cirsmu iegāde</a></li>
                         <li><a href="/pakalpojumi">Meža atjaunošana</a></li>
                         <li><a href="/pakalpojumi">Konsultācijas</a></li>
-                        <li><a href="/pieteikt-cirsmai">Pieteikt cirsmu</a></li>
+                        <li><a href="/pieteikt-cirsmu">Pieteikt cirsmu</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
