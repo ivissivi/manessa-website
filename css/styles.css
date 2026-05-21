@@ -1006,6 +1006,24 @@ body.page-inner .page-main > section:only-child {
     margin-bottom: 1.6rem;
 }
 
+.team-card:has(.team-phone) .team-role {
+    margin-bottom: 0.65rem;
+}
+
+.team-phone {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-brown);
+    letter-spacing: 0.02em;
+    transition: color var(--transition);
+}
+
+.team-phone:hover {
+    color: var(--color-mint-dark);
+}
+
 .team-email {
     display: flex;
     align-items: center;
