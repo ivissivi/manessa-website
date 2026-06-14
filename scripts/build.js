@@ -95,6 +95,22 @@ const PAGES = [
             'Manessa komanda, kontaktinformācija un uzņēmuma rekvizīti - Siguldā un visā Latvijā.',
         content: 'kontakti.html',
     },
+    {
+        out: 'privatuma-politika.html',
+        pageId: 'privacy',
+        bodyClass: 'page-inner page-legal',
+        title: 'Privātuma politika | Manessa',
+        description: 'SIA Manessa privātuma politika - kā apstrādājam personas datus vietnē manessa.lv.',
+        content: 'privatuma-politika.html',
+    },
+    {
+        out: 'lietotaju-noteikumi.html',
+        pageId: 'terms',
+        bodyClass: 'page-inner page-legal',
+        title: 'Lietotāju noteikumi | Manessa',
+        description: 'SIA Manessa vietnes manessa.lv lietošanas noteikumi.',
+        content: 'lietotaju-noteikumi.html',
+    },
 ];
 
 /** Public routes for sitemap (matches cleanUrls + nav; excludes redirects) */
@@ -107,6 +123,8 @@ const SITEMAP_ROUTES = [
     { path: '/pieteikt-cirsmu', changefreq: 'monthly', priority: '0.8' },
     { path: '/kontakti', changefreq: 'monthly', priority: '0.8' },
     { path: '/suveniri', changefreq: 'monthly', priority: '0.6' },
+    { path: '/privatuma-politika', changefreq: 'yearly', priority: '0.3' },
+    { path: '/lietotaju-noteikumi', changefreq: 'yearly', priority: '0.3' },
 ];
 
 function writeRobotsTxt() {
