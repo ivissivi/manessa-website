@@ -24,9 +24,9 @@
     --color-card: #FFFFFF;
     --color-border: rgba(61, 51, 46, 0.12);
 
-    /* Typography — Source * family: strong Latin Extended / Latvian diacritic support */
-    --font-display: 'Source Serif 4', 'Georgia', serif;
-    --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Typography - Josefin Sans (Light default) */
+    --font-display: 'Josefin Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Josefin Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     /* iOS/macOS Safari → SF Pro; Windows → Segoe UI; Android → Roboto */
     --font-numeric: ui-sans-serif, -apple-system, BlinkMacSystemFont,
         system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
@@ -61,6 +61,7 @@ html {
 
 body {
     font-family: var(--font-body);
+    font-weight: 300;
     font-size: 16px;
     line-height: 1.65;
     color: var(--color-brown);
@@ -320,7 +321,7 @@ body.page-inner .page-main {
     flex-direction: column;
 }
 
-/* Kontakti: DOM — H1 vispirms; vizuāli komanda augšā */
+/* Kontakti: DOM - H1 vispirms; vizuāli komanda augšā */
 body[data-page="contact"] .page-main #team {
     order: -1;
 }
@@ -1022,6 +1023,12 @@ body.page-inner .page-main > section:only-child {
 
 .team-phone:hover {
     color: var(--color-mint-dark);
+}
+
+.team-phone-placeholder {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
 }
 
 .team-email {

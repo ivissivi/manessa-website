@@ -146,7 +146,7 @@
     /* ----------  PIETEIKUMA FORMA  ---------- */
     const form = document.getElementById('contact-form');
     if (form) {
-        /* Honeypot — tikai JS, lai cilvēki neredzētu (CSS slēpšana nestrādāja uzticami) */
+        /* Honeypot - tikai JS, lai cilvēki neredzētu (CSS slēpšana nestrādāja uzticami) */
         let honeypotInput = null;
         if (!form.querySelector('[data-honeypot]')) {
             honeypotInput = document.createElement('input');
@@ -201,6 +201,7 @@
                 phone: form.phone?.value ?? '',
                 email: form.email?.value ?? '',
                 service: form.service?.value ?? '',
+                kadastrs: form.kadastrs?.value ?? '',
                 message: form.message?.value ?? '',
                 website: honeypotInput?.value ?? '',
             };

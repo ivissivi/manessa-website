@@ -1,12 +1,12 @@
 /**
- * POST /api/pieteikums — pieteikuma formas apstrāde (Vercel serverless).
+ * POST /api/pieteikums - pieteikuma formas apstrāde (Vercel serverless).
  *
  * E-pasts: Microsoft 365 / Outlook SMTP (smtp.office365.com)
  *
  * Env (Vercel → Settings → Environment Variables):
  *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
- *   CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL (neobligāti — noklus. SMTP_USER)
- *   SITE_URL — origin pārbaudei
+ *   CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL (neobligāti - noklus. SMTP_USER)
+ *   SITE_URL - origin pārbaudei
  *
  * CSP (vēlāk): connect-src 'self' (šis endpoints).
  */
@@ -25,6 +25,7 @@ const MAX = {
     name: 200,
     phone: 50,
     email: 254,
+    kadastrs: 14,
     message: 5000,
 };
 
@@ -86,6 +87,7 @@ function validatePayload(body) {
     const phone = normalizeString(body?.phone, MAX.phone);
     const email = normalizeString(body?.email, MAX.email);
     const service = normalizeString(body?.service, 80);
+    const kadastrs = normalizeString(body?.kadastrs, MAX.kadastrs);
     const message = normalizeString(body?.message, MAX.message);
 
     if (!name) {
@@ -112,22 +114,24 @@ function validatePayload(body) {
             phone,
             email,
             service: service || SERVICES[0],
+            kadastrs,
             message,
         },
     };
 }
 
-function buildEmailText({ name, phone, email, service, message }) {
+function buildEmailText({ name, phone, email, service, kadastrs, message }) {
     const lines = [
         'Jauns pieteikums no manessa.lv',
         '',
         `Vārds: ${name}`,
         `Tālrunis: ${phone}`,
-        `E-pasts: ${email || '—'}`,
+        `E-pasts: ${email || '-'}`,
         `Pakalpojums: ${service}`,
+        `Kadastra apzīmējums: ${kadastrs || '-'}`,
         '',
         'Ziņa:',
-        message || '—',
+        message || '-',
     ];
     return lines.join('\n');
 }
@@ -164,7 +168,7 @@ async function sendViaOutlookSmtp({ name, phone, email, service, message }) {
         from: from.includes('<') ? from : `Manessa <${from}>`,
         to,
         replyTo: email || undefined,
-        subject: `Pieteikums: ${service} — ${name}`,
+        subject: `Pieteikums: ${service} - ${name}`,
         text: buildEmailText({ name, phone, email, service, message }),
     });
 }

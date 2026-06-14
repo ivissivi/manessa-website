@@ -9,7 +9,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'public');
 
-/** Production URL — set SITE_URL in Vercel env if the domain differs */
+/** Production URL - set SITE_URL in Vercel env if the domain differs */
 const SITE_URL = (process.env.SITE_URL || 'https://www.manessa.lv').replace(/\/$/, '');
 
 const partials = (name) => fs.readFileSync(path.join(ROOT, 'partials', name), 'utf8');
