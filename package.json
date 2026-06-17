@@ -5,8 +5,7 @@
     "nodemailer": "^6.10.1"
   },
   "scripts": {
-    "build": "node scripts/build.js",
-    "dev": "node scripts/build.js && npx serve public",
+    "dev": "node scripts/server.js",
     "dev:full": "vercel dev"
   }
 }

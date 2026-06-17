@@ -918,9 +918,9 @@ body.page-inner .page-main > section:only-child {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.8rem;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -1390,6 +1390,29 @@ body.page-inner .page-main > section:only-child {
 .souvenir-teaser-head .section-lead.souvenir-teaser-lead {
     margin-bottom: 1.35rem;
 }
+.coming-soon-block {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+}
+.coming-soon-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-mint);
+    border: 1px solid var(--color-mint);
+    border-radius: 99px;
+    padding: 0.3em 1em;
+    margin-bottom: 1.25rem;
+}
+.coming-soon-desc {
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    opacity: 0.65;
+    line-height: 1.7;
+}
+
 .souvenir-teaser-badge {
     display: inline-block;
     margin-bottom: 1.25rem;
