@@ -2,7 +2,7 @@
   "name": "manessa-website",
   "private": true,
   "dependencies": {
-    "nodemailer": "^6.10.1"
+    "resend": "^4.0.0"
   },
   "scripts": {
     "dev": "node scripts/server.js",

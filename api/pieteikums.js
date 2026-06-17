@@ -1,17 +1,4 @@
-/**
- * POST /api/pieteikums - pieteikuma formas apstrāde (Vercel serverless).
- *
- * E-pasts: Microsoft 365 / Outlook SMTP (smtp.office365.com)
- *
- * Env (Vercel → Settings → Environment Variables):
- *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
- *   CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL (neobligāti - noklus. SMTP_USER)
- *   SITE_URL - origin pārbaudei
- *
- * CSP (vēlāk): connect-src 'self' (šis endpoints).
- */
-
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 const SERVICES = [
     'Mežizstrāde',
@@ -40,88 +27,52 @@ function isAllowedRequest(req) {
     const origin = req.headers.origin;
     const host = req.headers.host;
 
-    if (!origin) {
-        return Boolean(host);
-    }
-
-    if (siteUrl && origin === siteUrl) {
-        return true;
-    }
-
+    if (!origin) return Boolean(host);
+    if (siteUrl && origin === siteUrl) return true;
     if (host) {
-        const httpsHost = `https://${host}`;
-        if (origin === httpsHost || origin === `http://${host}`) {
-            return true;
-        }
+        if (origin === `https://${host}` || origin === `http://${host}`) return true;
     }
-
-    if (process.env.VERCEL_ENV === 'preview' && origin.includes('.vercel.app')) {
-        return true;
-    }
-
+    if (process.env.VERCEL_ENV === 'preview' && origin.includes('.vercel.app')) return true;
     return false;
 }
 
 function normalizeString(value, maxLen) {
-    if (typeof value !== 'string') {
-        return '';
-    }
+    if (typeof value !== 'string') return '';
     return value.trim().slice(0, maxLen);
 }
 
 function isValidEmail(value) {
-    if (!value) {
-        return true;
-    }
+    if (!value) return true;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= MAX.email;
 }
 
 function validatePayload(body) {
     const errors = {};
 
-    if (body && body.website) {
-        return { ok: false, spam: true };
-    }
+    if (body && body.website) return { ok: false, spam: true };
 
-    const name = normalizeString(body?.name, MAX.name);
-    const phone = normalizeString(body?.phone, MAX.phone);
-    const email = normalizeString(body?.email, MAX.email);
-    const service = normalizeString(body?.service, 80);
+    const name     = normalizeString(body?.name,     MAX.name);
+    const phone    = normalizeString(body?.phone,    MAX.phone);
+    const email    = normalizeString(body?.email,    MAX.email);
+    const service  = normalizeString(body?.service,  80);
     const kadastrs = normalizeString(body?.kadastrs, MAX.kadastrs);
-    const message = normalizeString(body?.message, MAX.message);
+    const message  = normalizeString(body?.message,  MAX.message);
 
-    if (!name) {
-        errors.name = 'Vārds ir obligāts.';
-    }
-    if (!phone) {
-        errors.phone = 'Tālrunis ir obligāts.';
-    }
-    if (!isValidEmail(email)) {
-        errors.email = 'Nepareizs e-pasta formāts.';
-    }
-    if (service && !SERVICES.includes(service)) {
-        errors.service = 'Nepareizs pakalpojums.';
-    }
+    if (!name)               errors.name  = 'Vārds ir obligāts.';
+    if (!phone)              errors.phone = 'Tālrunis ir obligāts.';
+    if (!isValidEmail(email)) errors.email = 'Nepareizs e-pasta formāts.';
+    if (service && !SERVICES.includes(service)) errors.service = 'Nepareizs pakalpojums.';
 
-    if (Object.keys(errors).length > 0) {
-        return { ok: false, errors };
-    }
+    if (Object.keys(errors).length > 0) return { ok: false, errors };
 
     return {
         ok: true,
-        data: {
-            name,
-            phone,
-            email,
-            service: service || SERVICES[0],
-            kadastrs,
-            message,
-        },
+        data: { name, phone, email, service: service || SERVICES[0], kadastrs, message },
     };
 }
 
 function buildEmailText({ name, phone, email, service, kadastrs, message }) {
-    const lines = [
+    return [
         'Jauns pieteikums no manessa.lv',
         '',
         `Vārds: ${name}`,
@@ -132,45 +83,35 @@ function buildEmailText({ name, phone, email, service, kadastrs, message }) {
         '',
         'Ziņa:',
         message || '-',
-    ];
-    return lines.join('\n');
+    ].join('\n');
 }
 
-function getSmtpConfig() {
-    const host = process.env.SMTP_HOST || 'smtp.office365.com';
-    const port = Number.parseInt(process.env.SMTP_PORT || '587', 10);
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const to = process.env.CONTACT_TO_EMAIL || user;
-    const from = process.env.CONTACT_FROM_EMAIL || user;
+async function sendViaResend({ name, phone, email, service, kadastrs, message }) {
+    const apiKey = process.env.RESEND_API_KEY;
+    const to     = process.env.CONTACT_TO_EMAIL;
+    const from   = process.env.CONTACT_FROM_EMAIL || 'Manessa <info@manessa.lv>';
 
-    return { host, port, user, pass, to, from };
-}
-
-async function sendViaOutlookSmtp({ name, phone, email, service, message }) {
-    const { host, port, user, pass, to, from } = getSmtpConfig();
-
-    if (!user || !pass || !to || !from) {
-        const err = new Error('SMTP is not configured');
+    if (!apiKey || !to) {
+        const err = new Error('Resend is not configured');
         err.code = 'NOT_CONFIGURED';
         throw err;
     }
 
-    const transporter = nodemailer.createTransport({
-        host,
-        port,
-        secure: port === 465,
-        auth: { user, pass },
-        requireTLS: port === 587,
-    });
+    const resend = new Resend(apiKey);
 
-    await transporter.sendMail({
-        from: from.includes('<') ? from : `Manessa <${from}>`,
+    const { error } = await resend.emails.send({
+        from,
         to,
         replyTo: email || undefined,
         subject: `Pieteikums: ${service} - ${name}`,
-        text: buildEmailText({ name, phone, email, service, message }),
+        text: buildEmailText({ name, phone, email, service, kadastrs, message }),
     });
+
+    if (error) {
+        const err = new Error(error.message || 'Resend error');
+        err.resendError = error;
+        throw err;
+    }
 }
 
 module.exports = async function handler(req, res) {
@@ -190,20 +131,15 @@ module.exports = async function handler(req, res) {
     const result = validatePayload(req.body);
 
     if (!result.ok) {
-        if (result.spam) {
-            return json(res, 200, { ok: true, message: 'Paldies! Drīz sazināsimies.' });
-        }
+        if (result.spam) return json(res, 200, { ok: true, message: 'Paldies! Drīz sazināsimies.' });
         return json(res, 400, { ok: false, errors: result.errors });
     }
 
     try {
-        await sendViaOutlookSmtp(result.data);
-        return json(res, 200, {
-            ok: true,
-            message: 'Paldies! Jūsu pieteikums ir nosūtīts.',
-        });
+        await sendViaResend(result.data);
+        return json(res, 200, { ok: true, message: 'Paldies! Jūsu pieteikums ir nosūtīts.' });
     } catch (err) {
-        console.error('[pieteikums]', err.message, err.response || err.code || '');
+        console.error('[pieteikums]', err.message, err.resendError || err.code || '');
 
         if (err.code === 'NOT_CONFIGURED') {
             return json(res, 503, {
