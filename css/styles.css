@@ -817,6 +817,8 @@ body.page-inner .page-main > section:only-child {
     font-size: 0.95rem;
     margin-bottom: 1.4rem;
     line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
 }
 .service-link {
     font-size: 0.85rem;
