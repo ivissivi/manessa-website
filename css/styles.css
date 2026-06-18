@@ -1774,6 +1774,8 @@ body.page-legal .legal-header .section-lead {
     margin-bottom: 0.85rem;
     color: var(--color-brown-soft);
     line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .legal-block p:last-child {
