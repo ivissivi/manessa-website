@@ -324,6 +324,7 @@ body.page-inner .page-main {
 /* Kontakti: DOM - H1 vispirms; vizuāli komanda augšā */
 body[data-page="contact"] .page-main #team {
     order: -1;
+    padding-top: calc(var(--scroll-offset) + clamp(2rem, 5vw, 3.5rem));
 }
 
 /* Viena atstarpe zem fiksētās galvenes - fons sākas uzreiz, bez gaišas joslas */
