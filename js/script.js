@@ -91,15 +91,13 @@
 
     if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry, idx) => {
-                if (entry.isIntersecting) {
-                    setTimeout(
-                        () => entry.target.classList.add('visible'),
-                        Array.from(entries).indexOf(entry) * 80
-                    );
+            const visible = entries.filter((e) => e.isIntersecting);
+            visible
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+                .forEach((entry, idx) => {
+                    setTimeout(() => entry.target.classList.add('visible'), idx * 80);
                     io.unobserve(entry.target);
-                }
-            });
+                });
         }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 
         revealEls.forEach((el) => io.observe(el));
