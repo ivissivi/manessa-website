@@ -1,9 +1,6 @@
 {
   "name": "manessa-website",
   "private": true,
-  "dependencies": {
-    "resend": "^4.0.0"
-  },
   "scripts": {
     "dev": "node scripts/server.js",
     "dev:full": "vercel dev"

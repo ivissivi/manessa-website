@@ -1,5 +1,3 @@
-const { Resend } = require('resend');
-
 const SERVICES = [
     'Mežizstrāde',
     'Cirsmas pārdošana',
@@ -86,30 +84,45 @@ function buildEmailText({ name, phone, email, service, kadastrs, message }) {
     ].join('\n');
 }
 
-async function sendViaResend({ name, phone, email, service, kadastrs, message }) {
-    const apiKey = process.env.RESEND_API_KEY;
+function parseSender(value) {
+    // Accepts "Name <email@domain>" or plain "email@domain"
+    const match = /^\s*(.*?)\s*<\s*([^>]+)\s*>\s*$/.exec(value);
+    if (match) return { name: match[1] || 'Manessa', email: match[2] };
+    return { name: 'Manessa', email: value.trim() };
+}
+
+async function sendViaBrevo({ name, phone, email, service, kadastrs, message }) {
+    const apiKey = process.env.BREVO_API_KEY;
     const to     = process.env.CONTACT_TO_EMAIL;
-    const from   = process.env.CONTACT_FROM_EMAIL || 'Manessa <info@manessa.lv>';
+    const sender = parseSender(process.env.CONTACT_FROM_EMAIL || 'Manessa <info@manessa.lv>');
 
     if (!apiKey || !to) {
-        const err = new Error('Resend is not configured');
+        const err = new Error('Brevo is not configured');
         err.code = 'NOT_CONFIGURED';
         throw err;
     }
 
-    const resend = new Resend(apiKey);
-
-    const { error } = await resend.emails.send({
-        from,
-        to,
-        replyTo: email || undefined,
-        subject: `Pieteikums: ${service} - ${name}`,
-        text: buildEmailText({ name, phone, email, service, kadastrs, message }),
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+            'api-key': apiKey,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            sender,
+            to: [{ email: to }],
+            replyTo: email ? { email } : undefined,
+            subject: `Pieteikums: ${service} - ${name}`,
+            textContent: buildEmailText({ name, phone, email, service, kadastrs, message }),
+        }),
     });
 
-    if (error) {
-        const err = new Error(error.message || 'Resend error');
-        err.resendError = error;
+    if (!response.ok) {
+        let detail = '';
+        try { detail = JSON.stringify(await response.json()); } catch { detail = await response.text().catch(() => ''); }
+        const err = new Error(`Brevo error ${response.status}`);
+        err.brevoError = detail;
         throw err;
     }
 }
@@ -136,10 +149,10 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        await sendViaResend(result.data);
+        await sendViaBrevo(result.data);
         return json(res, 200, { ok: true, message: 'Paldies! Jūsu pieteikums ir nosūtīts.' });
     } catch (err) {
-        console.error('[pieteikums]', err.message, err.resendError || err.code || '');
+        console.error('[pieteikums]', err.message, err.brevoError || err.code || '');
 
         if (err.code === 'NOT_CONFIGURED') {
             return json(res, 503, {
