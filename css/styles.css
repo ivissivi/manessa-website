@@ -1492,6 +1492,14 @@ body.page-inner .page-main > section:only-child {
     }
     .eu-project-meta {
         gap: 1.25rem;
+        justify-content: center;
+    }
+    .eu-meta-item {
+        align-items: center;
+        text-align: center;
+    }
+    .eu-project-tags {
+        text-align: center !important;
     }
     .eu-project-img {
         max-width: 100%;
