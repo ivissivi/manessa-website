@@ -1416,6 +1416,88 @@ body.page-inner .page-main > section:only-child {
     line-height: 1.7;
 }
 
+/* EU / EDIC project card */
+.eu-project-card {
+    background: var(--color-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    max-width: 920px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+}
+
+.eu-project-body h2 {
+    margin: 0.75rem 0 1rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.35;
+}
+
+.eu-project-body > p {
+    line-height: 1.75;
+    opacity: 0.75;
+    margin-bottom: 1.5rem;
+    font-size: 0.97rem;
+    text-align: justify;
+}
+
+.eu-project-tags {
+    font-size: 0.82rem;
+    color: var(--color-mint-dark);
+    opacity: 1 !important;
+    text-align: left !important;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+}
+
+.eu-project-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+}
+
+.eu-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.eu-meta-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brown-light);
+}
+
+.eu-meta-value {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--color-brown);
+}
+
+.eu-project-img {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+}
+
+@media (max-width: 680px) {
+    .eu-project-card {
+        padding: 1.75rem;
+    }
+    .eu-project-meta {
+        gap: 1.25rem;
+    }
+    .eu-project-img {
+        max-width: 100%;
+    }
+}
+
 .souvenir-teaser-badge {
     display: inline-block;
     margin-bottom: 1.25rem;
