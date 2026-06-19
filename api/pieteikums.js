@@ -41,7 +41,12 @@ function normalizeString(value, maxLen) {
 
 function isValidEmail(value) {
     if (!value) return true;
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= MAX.email;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value) && value.length <= MAX.email;
+}
+
+function isValidPhone(value) {
+    if (!/^[\d\s+()-]+$/.test(value)) return false;
+    return value.replace(/\D/g, '').length >= 1;
 }
 
 function validatePayload(body) {
@@ -56,8 +61,9 @@ function validatePayload(body) {
     const kadastrs = normalizeString(body?.kadastrs, MAX.kadastrs);
     const message  = normalizeString(body?.message,  MAX.message);
 
-    if (!name)               errors.name  = 'Vārds ir obligāts.';
-    if (!phone)              errors.phone = 'Tālrunis ir obligāts.';
+    if (!name)                errors.name  = 'Vārds ir obligāts.';
+    if (!phone)               errors.phone = 'Tālrunis ir obligāts.';
+    else if (!isValidPhone(phone)) errors.phone = 'Nederīgs tālruņa numurs (tikai cipari).';
     if (!isValidEmail(email)) errors.email = 'Nepareizs e-pasta formāts.';
     if (service && !SERVICES.includes(service)) errors.service = 'Nepareizs pakalpojums.';
 

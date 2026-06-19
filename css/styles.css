@@ -1708,6 +1708,42 @@ body.page-404 .error-page .container {
     box-shadow: 0 0 0 4px rgba(111, 201, 181, 0.15);
 }
 
+.field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #9e2f24;
+    line-height: 1.4;
+}
+
+.char-counter {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--color-muted, #8a857d);
+    text-align: right;
+}
+
+.char-counter.is-limit {
+    color: #9e2f24;
+    font-weight: 600;
+}
+
+.form-group input.has-error,
+.form-group select.has-error,
+.form-group textarea.has-error {
+    border-color: #9e2f24;
+    background: rgba(158, 47, 36, 0.04);
+}
+
+.form-group input.has-error:focus,
+.form-group select.has-error:focus,
+.form-group textarea.has-error:focus {
+    border-color: #9e2f24;
+    box-shadow: 0 0 0 4px rgba(158, 47, 36, 0.12);
+}
+
 .form-status {
     margin-bottom: 1rem;
     font-size: 0.92rem;

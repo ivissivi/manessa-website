@@ -189,10 +189,75 @@
             }
         };
 
+        /* --- Lauku līmeņa validācija ar ziņām --- */
+        const FIELDS = ['name', 'phone', 'email'];
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        const setFieldError = (field, message) => {
+            const input = form[field];
+            const errEl = document.getElementById(`${field}-error`);
+            if (input) {
+                input.classList.toggle('has-error', Boolean(message));
+                input.setAttribute('aria-invalid', message ? 'true' : 'false');
+            }
+            if (errEl) {
+                errEl.textContent = message || '';
+                errEl.hidden = !message;
+            }
+        };
+
+        const clearFieldErrors = () => FIELDS.forEach((f) => setFieldError(f, ''));
+
+        const validateClient = (p) => {
+            const errors = {};
+            if (!p.name.trim()) {
+                errors.name = 'Lūdzu ievadiet vārdu, uzvārdu.';
+            }
+            if (!p.phone.trim()) {
+                errors.phone = 'Lūdzu ievadiet tālruņa numuru.';
+            } else if (!/^[\d\s+()-]+$/.test(p.phone.trim()) || !/\d/.test(p.phone)) {
+                errors.phone = 'Lūdzu ievadiet derīgu tālruņa numuru (tikai cipari).';
+            }
+            if (p.email.trim() && !EMAIL_RE.test(p.email.trim())) {
+                errors.email = 'Lūdzu ievadiet derīgu e-pasta adresi (piem., vards@piemers.lv).';
+            }
+            return errors;
+        };
+
+        /* Notīra lauka kļūdu, tiklīdz lietotājs sāk labot */
+        FIELDS.forEach((f) => {
+            const input = form[f];
+            if (input) {
+                input.addEventListener('input', () => {
+                    if (input.classList.contains('has-error')) setFieldError(f, '');
+                });
+            }
+        });
+
+        const showErrors = (errors) => {
+            FIELDS.forEach((f) => setFieldError(f, errors[f] || ''));
+            const firstField = FIELDS.find((f) => errors[f]);
+            if (firstField && form[firstField]) form[firstField].focus();
+        };
+
+        /* Ziņas lauka simbolu skaitītājs */
+        const messageEl = form.message;
+        const counterEl = document.getElementById('message-counter');
+        if (messageEl && counterEl) {
+            const maxLen = Number(messageEl.getAttribute('maxlength')) || 5000;
+            const updateCounter = () => {
+                const len = messageEl.value.length;
+                counterEl.textContent = `${len} / ${maxLen}`;
+                counterEl.classList.toggle('is-limit', len >= maxLen);
+            };
+            messageEl.addEventListener('input', updateCounter);
+            updateCounter();
+        }
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             setStatus('');
-            setSubmitting(true);
+            clearFieldErrors();
 
             const payload = {
                 name: form.name?.value ?? '',
@@ -204,6 +269,15 @@
                 website: honeypotInput?.value ?? '',
             };
 
+            const clientErrors = validateClient(payload);
+            if (Object.keys(clientErrors).length > 0) {
+                showErrors(clientErrors);
+                setStatus('Lūdzu izlabojiet iezīmētos laukus.', 'error');
+                return;
+            }
+
+            setSubmitting(true);
+
             try {
                 const response = await fetch('/api/pieteikums', {
                     method: 'POST',
@@ -214,9 +288,12 @@
                 const data = await response.json().catch(() => ({}));
 
                 if (!response.ok) {
+                    if (data.errors && typeof data.errors === 'object') {
+                        showErrors(data.errors);
+                    }
                     const errMsg =
                         data.error ||
-                        (data.errors && Object.values(data.errors).join(' ')) ||
+                        (data.errors && 'Lūdzu izlabojiet iezīmētos laukus.') ||
                         'Neizdevās nosūtīt. Mēģiniet vēlāk.';
                     setStatus(errMsg, 'error');
                     setSubmitting(false);
@@ -229,6 +306,7 @@
                     submitBtn.style.background = 'var(--color-mint-dark)';
                 }
                 form.reset();
+                messageEl?.dispatchEvent(new Event('input'));
 
                 setTimeout(() => {
                     setSubmitting(false);
